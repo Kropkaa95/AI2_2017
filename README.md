@@ -150,3 +150,19 @@ Owoc z jego długością krotka
 Owoc z jego długością (słownik)
 ['pear', 'orange', 'apple']
 {'apple': 5, 'pear': 4, 'orange': 6}
+
+I love Python!
+Keyword arguments are great!!!!
+I guess Java is okay...
+LET'S GO STANFORD!!
+Average of first 10 primes is 12.9
+=========================
+| shirt_color |    pink |
+| last_name   | Redmond |
+| first_name  |     Sam |
+=========================
+==================================
+|           album |     1989     |
+| artist_fullname | Taylor $wift |
+|            song |    Style     |
+==================================
