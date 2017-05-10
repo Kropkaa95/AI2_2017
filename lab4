@@ -1,0 +1,52 @@
+def testcomparisons():
+    words = ['pear', 'cabbage', 'apple', 'bananas']
+    min(words)  # => 'apple'
+    words.sort(key=lambda s: s[-1])  # Alternatively, key=operator.itemgetter(-1)
+    words  # => ['cabbage', 'apple', 'pear', 'bananas'] ... Why 'cabbage' > 'apple'?
+    # Because the builtin sort is stable - even though they both have the smae
+    # value after application of the key function, cabbage appears before apple
+    # in the original list, so it also is before apple in the sorted list
+    max(words, key=len)  # 'cabbage' ... Why not 'bananas'?
+    # same reason
+    x= min(words, key=lambda s: s[1::2])  # What will this value be?
+    # bananas, since it's aaa under the action of the sort key
+    print(x)
+
+def highest_alphanumeric_score():
+    def alpha_score(upper_letters):
+        """Computes the alphanumeric sum of letters in a string.
+        Prerequisite: upper_letters is composed entirely of capital letters.
+        """
+        return sum(map(lambda l: 1 + ord(l) - ord('A'), upper_letters))
+
+    # alpha_score('ABC')  # => 6 = 1 ('A') + 2 ('B') + 3 ('C')
+
+    def two_best(words):
+        words.sort(key=lambda word: alpha_score(filter(str.isupper, word)), reverse=True)
+        return words[:2]
+
+    print(two_best(['hEllO', 'wOrLD', 'i', 'aM', 'PyThOn']))
+    # => ['PyThOn', 'wOrLD']
+
+def functional():
+    """
+    if score == 1:
+        return "Winner"
+    elif score == -1:
+        return "Loser"
+    else:
+        return "Tied"
+    """
+    # return (score == 1 and "Winner") or (score == -1 or "Loser") or "Tied"
+
+## Iterators
+def iterator_consumption():
+    it = iter(range(100))
+    67 in it  # => True
+    # After the above two lines are executed, the iterator has been
+    # run until it finds the 67, that is, until the point when next(it)
+    # returned 68
+
+    next(it)  # => 68
+    37 in it  # => False, and in searching runs the iterator to exhaustion
+    next(it)  # => raises StopIteration
