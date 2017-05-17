@@ -1,0 +1,28 @@
+import operator
+from functools import reduce
+
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+
+def lcm(a, b):
+    return (a * b) // gcd(a, b)
+    
+def fact(n):
+    return n > 1 and n * fact(n - 1) or 1
+
+fact(3)  
+fact(7)  
+
+def alpha_score(upper_letters):
+    return sum(map(lambda l: 1 + ord(l) - ord('A'), upper_letters))
+
+alpha_score('ABC')  # => 6 = 1 ('A') + 2 ('B') + 3 ('C')
+
+def two_best(words):
+    words.sort(key=lambda word: alpha_score(filter(str.isupper, word)), reverse=True)
+    return words[:2]
+
+print (two_best(['hEllO', 'wOrLD', 'i', 'aM', 'PyThOn']))
